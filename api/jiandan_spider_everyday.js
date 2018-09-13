@@ -1,6 +1,7 @@
 /**
  * Created by goonxh on 2018/9/10.
  */
+const request = require('request');
 const models = require('../server/db');
 const express = require('express');
 //const router = express.Router();
@@ -8,9 +9,12 @@ const path = require('path');
 let http = require("http");
 let fs = require("fs");
 let cheerio = require("cheerio");
-let request = require("request");
 let url = 'http://jandan.net/top-ooxx';
 const app = express();
+
+const schedule = require('node-schedule');
+let rule1 = new schedule.RecurrenceRule();
+rule1.hour = [7,19]; rule1.minute = 0;
 
 
 app.get('/ooxxpic',function(req,res){
@@ -22,6 +26,10 @@ app.get('/ooxxpic',function(req,res){
         }
     });
 })
+
+const ooxxSchedule = schedule.scheduleJob(rule1, function(){
+    saveOoxxPic();
+});
 
 function saveOoxxPic() {
 	http.get(url, function(res) {
@@ -49,7 +57,6 @@ function saveOoxxPic() {
 	    console.log('获取数据出错！');
 	});
 }
-saveOoxxPic();
 
 /* 过滤页面信息 */
 function filterSlideList(html) {
