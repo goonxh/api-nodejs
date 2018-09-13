@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-var cors = require('cors');
+//var cors = require('cors');
 
 var http = require("http");
 var fs = require("fs");
@@ -9,7 +9,7 @@ var request = require("request");
 /*var i = 0;*/
 /*var url = "http://blog.xiehao.online/archives/";*/
 
-router.get('/article/getArticle',cors(), (req,response) => {
+router.get('/article/getArticle', (req,response) => {
     http.get("http://blog.xiehao.online/archives/",function(res){
 		var html = ""; //用来存储请求网页的整个html内容
 		var titles = [];
