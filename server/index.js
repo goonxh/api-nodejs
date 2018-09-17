@@ -1,6 +1,7 @@
 ﻿// 引入编写好的api
 const article = require('../api/blog_spider');
 const ooxxPic = require('../api/jiandan_spider_everyday');
+const string2qrcode = require('../api/string2qrcode');
 // 引入文件模块
 const fs = require('fs');
 // 引入处理路径的模块
@@ -33,6 +34,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(article);
 app.use(ooxxPic);
+app.use(string2qrcode);
 // 访问静态资源文件 这里是访问所有dist目录下的静态资源文件
 app.use(express.static(path.resolve(__dirname, '/')))
 // 因为是单页应用 所有请求都走/dist/index.html
