@@ -6,24 +6,43 @@
 		a{
 			text-decoration: none;
 		}
+		.method{
+			font-weight:600;
+			margin-left: 5px;
+		}
+		code {
+			font-size: 14px;
+		}
 	</style>
 </head>
 <body>
 	<h2>api.xiehao.xin</h2>
-	<h3><span>github地址：<a href="https://github.com/goonxh/api-nodejs">https://github.com/goonxh/api-nodejs</a></span></h3>
+	<h3><span>github地址：<a href="https://github.com/goonxh/api-nodejs" target="_blank">https://github.com/goonxh/api-nodejs</a></span></h3>
 	<ol>
 		<li>
 			<a href="https://api.xiehao.xin/article/getArticle">https://api.xiehao.xin/article/getArticle</a>
 			<p>获取博客<a href="http://blog.xiehao.online">blog.xiehao.online</a>的所有文章标题与链接等信息。</p>
+			<p><span>method:</span><span class="method">GET</span></p>
 		</li>
 		<li>
-			<a href="https://api.xiehao.xin/ooxxPic">https://api.xiehao.xin/ooxxPic</a>
+			<a href="https://api.xiehao.xin/ooxxPic" target="_blank">https://api.xiehao.xin/ooxxPic</a>
 			<p>获取煎蛋每日妹子精选图链接，每天早上7点和晚上7点更新。</p>
+			<p><span>method:</span><span class="method">GET</span></p>
 			<p><a href="https://me.xiehao.online/ooxxpic" style="text-decoration: underline;" target="_blank">预览地址</a></p>
 		</li>
 		<li>
-			<a href="https://api.xiehao.xin/string2qrcode">https://api.xiehao.xin/string2qrcode</a>
+			<a href="#">https://api.xiehao.xin/string2qrcode</a>
 			<p>输入任意字符串(网址，名称等)都可输出对应二维码url地址。</p>
+			<p><span>method:</span><span class="method">GET</span></p>
+			<div>
+				<p>options:</p>
+				<ul>
+					<li><code>stringVal: String</code></li>
+					<li><code>codeSize: Number  // QRcode大小</code></li>
+					<li><code>darkColor: String  // 二维码颜色 必须为hex值 默认为 #000000ff</code></li>
+					<li><code>lightColor: String  // 二维码背景颜色 必须为hex值 默认为 #ffffffff</code></li>
+				</ul>
+			</div>
 			<p><a href="https://me.xiehao.online/string2qrcode" style="text-decoration: underline;" target="_blank">预览地址</a></p>
 		</li>
 	</ol>
