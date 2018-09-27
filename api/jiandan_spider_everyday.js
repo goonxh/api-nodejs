@@ -1,13 +1,9 @@
 /**
  * Created by goonxh on 2018/9/10.
  */
-const request = require('request');
 const models = require('../server/db');
 const express = require('express');
-//const router = express.Router();
-const path = require('path');
 let http = require("http");
-let fs = require("fs");
 let cheerio = require("cheerio");
 let url = 'http://jandan.net/top-ooxx';
 const app = express();
@@ -20,7 +16,7 @@ rule1.hour = [7,19]; rule1.minute = 0;
 app.get('/ooxxpic',function(req,res){
 	models.ooxxPic.find((err,data) => {
         if (err) {
-            res.send("0");
+            res.send(err);
         } else {
             res.send(data[data.length-1].pic);
         }
@@ -83,7 +79,6 @@ function filterSlideList(html) {
 /* 输出图片地址数组 */
 function picSrcData(picListData) {
     // 计数
-    let count = 0;
     let picSrcData =[]
     // 遍历信息列表
     picListData.forEach(function(item) {

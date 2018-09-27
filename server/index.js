@@ -42,6 +42,6 @@ app.get('/', function(req, res) {
     const html = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf-8')
     res.send(html)
 })
-// 监听8088端口
+// 监听8989端口
 app.listen(8989);
 console.log('success listen port: 8989');

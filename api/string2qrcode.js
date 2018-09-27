@@ -1,8 +1,5 @@
 const QRCode = require('qrcode');
-const request = require('request');
 const express = require('express');
-//const router = express.Router();
-const fs = require("fs");
 const app = express();
 
 app.post('/string2qrcode',(req,res) =>{
