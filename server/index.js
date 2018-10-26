@@ -1,6 +1,7 @@
 ﻿// 引入编写好的api
 const article = require('../api/blog_spider');
 const ooxxPic = require('../api/jiandan_spider_everyday');
+const vueSystem = require('../vue_system/index');
 const string2qrcode = require('../api/string2qrcode');
 // 引入文件模块
 const fs = require('fs');
@@ -13,27 +14,15 @@ const express = require('express');
 const app = express();
 var cors = require('cors');
 app.use(cors());
-/*app.all('*',function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
-  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-
-  if (req.method == 'OPTIONS') {
-    res.send(200); /让options请求快速返回/
-  }
-  else {
-    next();
-  }
-});*/
 app.use(function(err, req, res, next) {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(article);
 app.use(ooxxPic);
+app.use(vueSystem);
 app.use(string2qrcode);
 // 访问静态资源文件 这里是访问所有dist目录下的静态资源文件
 app.use(express.static(path.resolve(__dirname, '/')))
