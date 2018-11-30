@@ -19,9 +19,17 @@ const ooxxPicSchema = mongoose.Schema({
     time: String,
 });
 
+const shijingSchema = mongoose.Schema({
+    title: String,
+    chapter: String,
+    section: String,
+    content: String,
+});
+
 /************** 定义模型Model **************/
 const Models = {
     ooxxPic : mongoose.model('ooxxPic',ooxxPicSchema),
+    shijing : mongoose.model('shijing',shijingSchema),
 }
 
 module.exports = Models;
