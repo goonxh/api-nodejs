@@ -2,11 +2,11 @@
 const mongoose = require('mongoose');
 // 连接数据库 如果不自己创建 默认test数据库会自动生成
 const options = {
-	user:"xh",
-	pass:"2012011234"
+    user:"xh",
+    pass:"2012011234"
 }
 //远程连接
-mongoose.connect('mongodb://47.106.141.98:27017/api', options);
+mongoose.connect('mongodb://104.225.154.43:27017/api');
 
 // 为这次连接绑定事件
 const db = mongoose.connection;
