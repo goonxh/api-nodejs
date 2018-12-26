@@ -7,7 +7,7 @@ const cheerio = require("cheerio");
 const request = require("request");
 
 router.get('/article/getArticle', (req,response) => {
-    http.get("http://blog.xiehao.online/archives/",function(res){
+    http.get("http://blog.xiehao.xin/archives/",function(res){
 		let html = ""; //用来存储请求网页的整个html内容
         let titles = [];
 		res.setEncoding("utf-8"); // 防止中文乱码
