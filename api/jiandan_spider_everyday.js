@@ -13,7 +13,7 @@ let rule1 = new schedule.RecurrenceRule();
 rule1.hour = [7,19]; rule1.minute = 0;
 
 
-app.get('/ooxxpic',function(req, res){
+app.get('/xapi/ooxxpic',function(req, res){
 	models.ooxxPic.find((err,data) => {
         if (err) {
             res.send(err);

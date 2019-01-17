@@ -3,7 +3,7 @@ const express = require('express');
 let http = require("http");
 const app = express();
 
-app.get('/shijing', function (req, res) {
+app.get('/xapi/shijing', function (req, res) {
     let page = parseInt(req.query.page)?parseInt(req.query.page):1, pageSize = parseInt(req.query.pageSize)?parseInt(req.query.pageSize):15;
     let search = req.query.search?req.query.search:'';
     let query = search?models.shijing.find({$text:{$search:search}}):models.shijing.find({});

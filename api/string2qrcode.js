@@ -2,7 +2,7 @@ const QRCode = require('qrcode');
 const express = require('express');
 const app = express();
 
-app.post('/string2qrcode',(req,res) =>{
+app.post('/xapi/string2qrcode',(req,res) =>{
     let reqString = req.body.stringVal;
     let opts = {
         errorCorrectionLevel:'H',
