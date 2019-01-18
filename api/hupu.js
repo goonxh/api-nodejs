@@ -3,38 +3,73 @@ const cheerio = require('cheerio');
 const async = require('async');
 const fs = require('fs');
 const url = require('url');
+const models = require('../server/db');
+const schedule = require('node-schedule');
+const app = express();
+let rule1 = new schedule.RecurrenceRule();
+rule1.hour = [1,13]; rule1.minute = 0;
+
 let allUrl = [];
-let output = []
+let output = [];
 let hupuUrl = 'https://bbs.hupu.com/selfie-1';
 let i=0;
 
 
-const allUrlPromise = hupuUrl => new Promise((resolve, reject) => {
-    superagent.get(hupuUrl)
-        .end((err, res) => {
-            if (err) {
-                console.log(err);
-            }
-            let $ = cheerio.load(res.text);
-            $('.titlelink>a:first-child').each((idx, ele) => {
-                let $element = $(ele);
-                let href = url.resolve(hupuUrl, $element.attr('href'));
-                allUrl.push(href);
-            })
-            if(allUrl) resolve(allUrl);
-        })
-})
-
-allUrlPromise(hupuUrl).then((res) => {
-    let t = setInterval(() => {
-        getPicFromHupu(res[i])
-        if (i === res.length - 1) {
-            clearInterval(t);
-            fs.writeFileSync('./output.json', JSON.stringify(output));
+app.get('/xapi/hupupic',function(req, res){
+    models.ooxxPic.find((err,data) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(data[data.length-1].pic);
         }
-    }, 500)
+    });
 })
 
+const hupuSchedule = schedule.scheduleJob(rule1, function(){
+    autoGetPic();
+});
+
+function autoGetPic() {
+    const allUrlPromise = hupuUrl => new Promise((resolve, reject) => {
+        superagent.get(hupuUrl)
+            .end((err, res) => {
+                if (err) {
+                    console.log(err);
+                }
+                let $ = cheerio.load(res.text);
+                $('.titlelink>a:first-child').each((idx, ele) => {
+                    let $element = $(ele);
+                    let href = url.resolve(hupuUrl, $element.attr('href'));
+                    allUrl.push(href);
+                })
+                if(allUrl) resolve(allUrl);
+            })
+    })
+
+    allUrlPromise(hupuUrl).then((res) => {
+        let t = setInterval(() => {
+            getPicFromHupu(res[i])
+            if (i === res.length - 1) {
+
+                clearInterval(t);
+                let newHupu = new models.hupuPic({
+                    content: output,
+                    time : new Date().toLocaleString()
+                });
+                newHupu.save((err,data) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log('successed');
+                    }
+                });
+            }
+        }, 500)
+
+    }).finally(()=>{
+
+    })
+}
 
 
 const getPicFromHupu = href =>{
@@ -72,3 +107,4 @@ const getPicFromHupu = href =>{
             i++;
         })
 }
+module.exports = app;

@@ -26,10 +26,16 @@ const shijingSchema = mongoose.Schema({
     content: String,
 });
 
+const hupuPicSchema = mongoose.Schema({
+    content: Object,
+    time: String,
+})
+
 /************** 定义模型Model **************/
 const Models = {
     ooxxPic : mongoose.model('ooxxPic',ooxxPicSchema),
     shijing : mongoose.model('shijing',shijingSchema),
+    hupuPic : mongoose.model('hupuPic',hupuPicSchema),
 }
 
 module.exports = Models;

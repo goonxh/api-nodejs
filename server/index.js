@@ -1,6 +1,7 @@
 ﻿// 引入编写好的api
 const article = require('../api/blog_spider');
 const ooxxPic = require('../api/jiandan_spider_everyday');
+const hupuPic = require('../api/hupu');
 const string2qrcode = require('../api/string2qrcode');
 const shijing = require('../api/shijing');
 // 引入文件模块
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(article);
 app.use(ooxxPic);
+app.use(hupuPic);
 app.use(string2qrcode);
 app.use(shijing);
 // 访问静态资源文件 这里是访问所有dist目录下的静态资源文件
