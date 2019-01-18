@@ -5,9 +5,10 @@ const fs = require('fs');
 const url = require('url');
 const models = require('../server/db');
 const schedule = require('node-schedule');
+const express = require('express');
 const app = express();
 let rule1 = new schedule.RecurrenceRule();
-rule1.hour = [1,13]; rule1.minute = 0;
+rule1.hour = [7,15]; rule1.minute = 0;
 
 let allUrl = [];
 let output = [];
