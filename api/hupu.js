@@ -8,7 +8,7 @@ const schedule = require('node-schedule');
 const express = require('express');
 const app = express();
 let rule1 = new schedule.RecurrenceRule();
-rule1.hour = [7,15]; rule1.minute = 0;
+rule1.hour = [7,17]; rule1.minute = 0;
 
 let allUrl = [];
 let output = [];
@@ -17,7 +17,7 @@ let i=0;
 
 
 app.get('/xapi/hupupic',function(req, res){
-    models.ooxxPic.find((err,data) => {
+    models.hupuPic.find((err,data) => {
         if (err) {
             res.send(err);
         } else {
@@ -89,10 +89,10 @@ const getPicFromHupu = href =>{
             $('.quote-content>p>img').each(function(item){
                 if(item === 0||item === 1||item === 2) {
                     let pic = $(this);
-                    contentPic.push(pic.attr('src'));
+                    contentPic.push(pic.attr('src').replace('?x-oss-process=image/resize,w_800/format,webp',''));
                 }else{
                     let pic = $(this);
-                    contentPic.push(pic.attr('data-original'));
+                    contentPic.push(pic.attr('data-original').replace('?x-oss-process=image/resize,w_800/format,webp',''));
                 }
 
             })
