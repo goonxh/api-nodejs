@@ -21,7 +21,7 @@ app.get('/xapi/hupupic',function(req, res){
         if (err) {
             res.send(err);
         } else {
-            res.send(data[data.length-1].pic);
+            res.send(data[data.length-1].content);
         }
     });
 })
