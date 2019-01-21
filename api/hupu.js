@@ -7,8 +7,8 @@ const models = require('../server/db');
 const schedule = require('node-schedule');
 const express = require('express');
 const app = express();
-let rule1 = new schedule.RecurrenceRule();
-rule1.hour = [8,18]; rule1.minute = 0;
+let rule2 = new schedule.RecurrenceRule();
+rule2.hour = [8,18]; rule2.minute = 0;
 
 let allUrl = [];
 let output = [];
@@ -26,7 +26,7 @@ app.get('/xapi/hupupic',function(req, res){
     });
 })
 
-const hupuSchedule = schedule.scheduleJob(rule1, function(){
+const hupuSchedule = schedule.scheduleJob(rule2, function(){
     autoGetPic();
 });
 
