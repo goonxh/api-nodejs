@@ -8,7 +8,7 @@ const schedule = require('node-schedule');
 const express = require('express');
 const app = express();
 let rule1 = new schedule.RecurrenceRule();
-rule1.hour = [7,17]; rule1.minute = 0;
+rule1.hour = [8,18]; rule1.minute = 0;
 
 let allUrl = [];
 let output = [];
