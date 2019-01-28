@@ -6,7 +6,7 @@ const options = {
     pass:"2012011234"
 }
 //远程连接
-mongoose.connect('mongodb://104.225.154.43:27017/api');
+mongoose.connect('mongodb://104.225.154.24:27017/api');
 
 // 为这次连接绑定事件
 const db = mongoose.connection;
